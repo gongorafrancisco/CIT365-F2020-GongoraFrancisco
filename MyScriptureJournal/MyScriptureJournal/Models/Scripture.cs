@@ -22,8 +22,8 @@ namespace MyScriptureJournal.Models
         ErrorMessage = "Only numbers, dashes (-) and whitespaces allowed"), Required(ErrorMessage = "Verse is required!")]
         public string Verse { get; set; }
 
-        [RegularExpression(@"^[a-zA-Z''-'\s]{1,40}$",
-        ErrorMessage = "Only leters are accepted, upto 40 characters."), Required(ErrorMessage = "Note is required!")]
+        [RegularExpression(@"^[a-zA-Z''-'\s]{1,200}$",
+        ErrorMessage = "Only leters are accepted, upto 200 characters."), Required(ErrorMessage = "Note is required!")]
         public string Note { get; set; }
 
     }

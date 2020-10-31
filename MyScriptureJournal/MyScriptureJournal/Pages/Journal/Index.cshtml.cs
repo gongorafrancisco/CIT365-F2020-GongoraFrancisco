@@ -18,6 +18,12 @@ namespace MyScriptureJournal.Pages.Journal
         {
             _context = context;
         }
+        public string BookSort { get; set; }
+        public string DateSort { get; set; }
+        public string CurrentFilter { get; set; }
+        public string CurrentBook { get; set; }
+        public string CurrentSort { get; set; }
+
 
         public IList<Scripture> Scripture { get;set; }
 
@@ -31,8 +37,14 @@ namespace MyScriptureJournal.Pages.Journal
         public string ScriptureBook { get; set; }
 
 
-        public async Task OnGetAsync()
+        public async Task OnGetAsync(string sortOrder, string SearchString, string ScriptureBook)
         {
+            BookSort = String.IsNullOrEmpty(sortOrder) ? "book_desc" : "";
+            DateSort = sortOrder == "Date" ? "date_desc" : "Date";
+
+            CurrentFilter = SearchString;
+            CurrentBook = ScriptureBook;
+
             // Use LINQ to get list of genres.
             IQueryable<string> bookQuery = from m in _context.Scripture
                                             orderby m.Book
@@ -44,13 +56,29 @@ namespace MyScriptureJournal.Pages.Journal
             {
                 scriptures = scriptures.Where(s => s.Note.Contains(SearchString));
             }
-            if (!string.IsNullOrEmpty(ScriptureBook))
+            if (!string.IsNullOrEmpty(CurrentBook))
             {
-                scriptures = scriptures.Where(x => x.Book == ScriptureBook);
+                scriptures = scriptures.Where(x => x.Book == CurrentBook);
             }
 
+            switch (sortOrder)
+            {
+                case "book_desc":
+                    scriptures = scriptures.OrderByDescending(s => s.Book);
+                    break;
+                case "Date":
+                    scriptures = scriptures.OrderBy(s => s.DateAdded);
+                    break;
+                case "date_desc":
+                    scriptures = scriptures.OrderByDescending(s => s.DateAdded);
+                    break;
+                default:
+                    scriptures = scriptures.OrderBy(s => s.Book);
+                    break;
+            }
+            
+            Scripture = await scriptures.AsNoTracking().ToListAsync();
             Books = new SelectList(await bookQuery.Distinct().ToListAsync());
-            Scripture = await scriptures.ToListAsync();
 
         }
     }

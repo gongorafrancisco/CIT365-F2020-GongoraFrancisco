@@ -9,7 +9,7 @@
         <div>
             <a class="alert-link" asp-page="Create">Create New</a>
         </div>
-        <form class="my-3">
+        <form class="my-3" asp-page="./Index" method="get">
             <div class="form-row align-items-center">
                 <div class="col-auto">
                     <select class="form-control" asp-for="ScriptureBook" asp-items="Model.Books">
@@ -29,13 +29,17 @@
 </form>
         <div class="table-responsive-md">
             <table class="table table-striped">
-                <thead class="thead-dark">
+                <thead class="thead-light">
                     <tr>
                         <th class="text-center" scope="col">
-                            @Html.DisplayNameFor(model => model.Scripture[0].DateAdded)
+                            <a asp-page="./Index" asp-route-sortOrder="@Model.DateSort">
+                                @Html.DisplayNameFor(model => model.Scripture[0].DateAdded)
+                            </a>
                         </th>
                         <th class="text-center" scope="col">
-                            @Html.DisplayNameFor(model => model.Scripture[0].Book)
+                            <a asp-page="./Index" asp-route-sortOrder="@Model.BookSort">
+                                @Html.DisplayNameFor(model => model.Scripture[0].Book)
+                            </a>
                         </th>
                         <th class="text-center" scope="col">
                             @Html.DisplayNameFor(model => model.Scripture[0].Chapter)

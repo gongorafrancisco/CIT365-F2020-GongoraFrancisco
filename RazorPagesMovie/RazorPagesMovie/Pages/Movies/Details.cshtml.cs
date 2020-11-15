@@ -20,6 +20,11 @@ namespace RazorPagesMovie.Pages.Movies
 
         public Movie Movie { get; set; }
 
+        public async Task<PartialViewResult> OnGetMovieAsync(int id)
+        {
+            return Partial("_Details", await _context.Movie.FirstOrDefaultAsync(m => m.ID == id));
+        }
+
         public async Task<IActionResult> OnGetAsync(int? id)
         {
             if (id == null)

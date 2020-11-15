@@ -19,10 +19,19 @@ namespace RazorPagesMovie.Pages.Movies
             _context = context;
         }
 
+        // strings needed for containing the sorting parameters.
+        public string NameSort { get; set; }
+        public string DateSort { get; set; }
+        public string CurrentFilter { get; set; }
+        public string CurrentSort { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public string SortOrder { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public string SearchString { get; set; }
+
         public IList<Movie> Movie { get;set; }
 
         [BindProperty(SupportsGet = true)]
-        public string SearchString { get; set; }
 
         // Requires using Microsoft.AspNetCore.Mvc.Rendering;
         public SelectList Genres { get; set; }

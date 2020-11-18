@@ -1,13 +1,12 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Http;
 
 namespace MvcMovie.Models
 {
-    public class Movie
+    public class MovieCreateViewModel
     {
-        public int Id { get; set; }
-
         [StringLength(60, MinimumLength = 3)]
         public string Title { get; set; }
 
@@ -24,6 +23,7 @@ namespace MvcMovie.Models
         [RegularExpression(@"^[A-Z]+[a-zA-Z0-9""'\s-]*$"), StringLength(5)]
         public string Rating { get; set; }
 
-        public string PhotoPath { get; set; }
+        public IFormFile Photo { get; set; }
+
     }
 }

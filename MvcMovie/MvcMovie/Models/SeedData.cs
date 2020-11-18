@@ -27,7 +27,8 @@ namespace MvcMovie.Models
                         ReleaseDate = DateTime.Parse("1993-7-3"),
                         Genre = "History",
                         Price = 6.99M,
-                        Rating = "G"
+                        Rating = "G",
+                        PhotoPath = null
                     },
 
                     new Movie
@@ -36,7 +37,8 @@ namespace MvcMovie.Models
                         ReleaseDate = DateTime.Parse("2000-3-24"),
                         Genre = "Drama",
                         Price = 8.99M,
-                        Rating = "G"
+                        Rating = "G",
+                        PhotoPath = null
                     },
 
                     new Movie
@@ -45,7 +47,8 @@ namespace MvcMovie.Models
                         ReleaseDate = DateTime.Parse("2003-2-23"),
                         Genre = "Short",
                         Price = 2.99M,
-                        Rating = "G"
+                        Rating = "G",
+                        PhotoPath = null
                     },
 
                     new Movie
@@ -54,7 +57,8 @@ namespace MvcMovie.Models
                         ReleaseDate = DateTime.Parse("2011-6-3"),
                         Genre = "Western",
                         Price = 19.95M,
-                        Rating = "PG"
+                        Rating = "PG",
+                        PhotoPath = null
                     }
                 );
                 context.SaveChanges();

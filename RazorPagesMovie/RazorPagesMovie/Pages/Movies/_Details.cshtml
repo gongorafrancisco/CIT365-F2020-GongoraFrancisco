@@ -1,0 +1,18 @@
+﻿@page "{id:int}"
+@model RazorPagesMovie.Pages.Movies.DetailsModel;
+
+<div>
+    <span class="d-inline-block">@Html.DisplayNameFor(model => model.Movie.Title)</span><span>@Html.DisplayFor(model => model.Movie.Title)</span>
+</div>
+<div>
+    <span class="d-inline-block">@Html.DisplayNameFor(model => model.Movie.ReleaseDate)</span><span>@Html.DisplayFor(model => model.Movie.ReleaseDate)</span>
+</div>
+<div>
+    <span class="d-inline-block">@Html.DisplayNameFor(model => model.Movie.Genre)</span><span>@Html.DisplayFor(model => model.Movie.Genre)</span>
+</div>
+<div>
+    <span class="d-inline-block">@Html.DisplayNameFor(model => model.Movie.Price)</span><span>@Html.DisplayFor(model => model.Movie.Price)</span>
+</div>
+<div>
+    <span class="d-inline-block">@Html.DisplayNameFor(model => model.Movie.Rating)</span><span>@Html.DisplayFor(model => model.Movie.Rating)</span>
+</div>

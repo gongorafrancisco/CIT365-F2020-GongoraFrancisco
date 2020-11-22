@@ -1,0 +1,61 @@
+@page
+@model MyScriptureJournal.Pages.Journal.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+        <h1 class="mb-3">Create <span class="text-muted">Journal entry</span></h1>
+        <div>
+            <a class="alert-link" asp-page="Index">Back to List</a>
+        </div>
+        <hr />
+                <form class="my-3" method="post">
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+                    <div class="form-group row">
+                        <label asp-for="Scripture.DateAdded" class="col-sm-2 col-form-label"></label>
+                        <div class="col-sm-8">
+                            <input asp-for="Scripture.DateAdded" class="form-control" />
+                            <small class="form-text text-muted">Date format mm/dd/yyyy (e.g. 30/10/2020)</small>
+                            <span asp-validation-for="Scripture.DateAdded" class="alert-danger" role="alert"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="Scripture.Book" class="col-sm-2 col-form-label"></label>
+                        <div class="col-sm-8">
+                            <input asp-for="Scripture.Book" class="form-control" />
+                            <small class="form-text text-muted">e.g. 1 Nephi</small>
+                            <span asp-validation-for="Scripture.Book" class="alert-danger" role="alert"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="Scripture.Chapter" class="col-sm-2 col-form-label"></label>
+                        <div class="col-sm-8">
+                            <input asp-for="Scripture.Chapter" class="form-control" />
+                            <small class="form-text text-muted">Only integers allowed</small>
+                            <span asp-validation-for="Scripture.Chapter" class="alert-danger" role="alert"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="Scripture.Verse" class="col-sm-2 col-form-label"></label>
+                        <div class="col-sm-8">
+                            <input asp-for="Scripture.Verse" class="form-control" />
+                            <small class="form-text text-muted">Numbers, white spaces and hyphens allowed (e.g 11-12)</small>
+                            <span asp-validation-for="Scripture.Verse" class="alert-danger" role="alert"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="Scripture.Note" class="col-sm-2 col-form-label"></label>
+                        <div class="col-sm-8">
+                            <textarea rows="4" cols="50" asp-for="Scripture.Note" class="form-control"></textarea>
+                            <span asp-validation-for="Scripture.Note" class="alert-danger" role="alert"></span>
+                            <small class="form-text text-muted">Only letters (a-z, A-Z) allowed.</small>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </form>
+
+        @section Scripts {
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }

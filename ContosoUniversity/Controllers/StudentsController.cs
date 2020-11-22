@@ -77,10 +77,11 @@ namespace ContosoUniversity.Controllers
             }
 
             var student = await _context.Students
-                .Include(s => s.Enrollments)
-                .ThenInclude(e => e.Course)
-                .AsNoTracking()
-                .FirstOrDefaultAsync(m => m.ID == id);
+                 .Include(s => s.Enrollments)
+                     .ThenInclude(e => e.Course)
+                 .AsNoTracking()
+                 .FirstOrDefaultAsync(m => m.ID == id);
+
             if (student == null)
             {
                 return NotFound();
@@ -96,11 +97,12 @@ namespace ContosoUniversity.Controllers
         }
 
         // POST: Students/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("LastName,FirstMidName,EnrollmentDate")] Student student)
+        public async Task<IActionResult> Create(
+            [Bind("EnrollmentDate,FirstMidName,LastName")] Student student)
         {
             try
             {
@@ -138,8 +140,8 @@ namespace ContosoUniversity.Controllers
         }
 
         // POST: Students/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost, ActionName("Edit")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditPost(int? id)
@@ -190,12 +192,11 @@ namespace ContosoUniversity.Controllers
             {
                 ViewData["ErrorMessage"] =
                     "Delete failed. Try again, and if the problem persists " +
-                    "contact your system administrator.";
+                    "see your system administrator.";
             }
 
             return View(student);
         }
-
         // POST: Students/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
